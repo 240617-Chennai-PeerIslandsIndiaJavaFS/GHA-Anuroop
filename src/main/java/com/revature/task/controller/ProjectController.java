@@ -42,10 +42,6 @@ public class ProjectController {
         return new ResponseEntity<Project>(service.deleteProject(project_id),HttpStatus.OK);
     }
 
-    @GetMapping("/{project_id}/tasks")
-    public ResponseEntity<Set<Task>> getTasksByProjectId(@PathVariable long project_id) {
-        Set<Task> tasks = service.getTasksByProjectId(project_id);
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
-    }
+
 
 }

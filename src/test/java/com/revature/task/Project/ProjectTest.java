@@ -90,12 +90,5 @@ public class ProjectTest {
                 .andExpect(jsonPath("$.project_name").value("Project 1"));
     }
 
-    @Test
-    public void testGetTasksByProjectId() throws Exception {
-        when(service.getTasksByProjectId(1L)).thenReturn(Collections.emptySet());
 
-        mockMvc.perform(get("/api/projects/1/tasks"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isEmpty());
-    }
 }
