@@ -27,9 +27,18 @@ jobs:
         run: mvn test
         if: ${{contains(github.event.head_commit.message, 'test commit')}}
 
-      - name: Upload jar to Github
-        if: ${{success()}}
+      - name: Check results
+        run:
+          echo "event = ${{github.event_name}}"
+          echo "Repository = ${{github.repository}}"
+          echo "Job ID = ${{github.job}}"
+          echo "Run ID = ${{github.run_id}}"
+          echo "user = ${{github.actor}}"
+
+
+      - name: Upload JAR to GitHub
+        if: ${{ success() && github.actor == 'Anuroop' }}
         uses: actions/upload-artifact@v3
         with:
-          name: my-app.jar
+          name: my-app
           path: target/*.jar
